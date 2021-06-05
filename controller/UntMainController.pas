@@ -18,12 +18,11 @@ type
     destructor Destroy(); override;
 
     procedure listarFields(AExibirCamposHerdados: Boolean);
-    procedure buscarPorField(AExibirCamposHerdados: Boolean; ACampo: String);
-
-    procedure listarPropertys(AExibirCamposHerdados: Boolean);
-    procedure buscarPorPropertys(AExibirCamposHerdados: Boolean; ACampo: String);
-
     procedure listarMethods(AExibirCamposHerdados: Boolean);
+    procedure listarPropertys(AExibirCamposHerdados: Boolean);
+
+    procedure buscarPorField(AExibirCamposHerdados: Boolean; ACampo: String);
+    procedure buscarPorPropertys(AExibirCamposHerdados: Boolean; ACampo: String);
     procedure buscarMethods(AExibirCamposHerdados: Boolean; ACampo: String);
   end;
 
@@ -62,9 +61,9 @@ begin
   FMethod.listar(AExibirCamposHerdados);
 end;
 
-procedure TMainController.buscarMethods(AExibirCamposHerdados: Boolean; ACampo: String);
+procedure TMainController.listarPropertys(AExibirCamposHerdados: Boolean);
 begin
-  FMethod.buscar(AExibirCamposHerdados, ACampo);
+  FProperty.listar(AExibirCamposHerdados);
 end;
 
 procedure TMainController.buscarPorField(AExibirCamposHerdados: Boolean; ACampo: String);
@@ -72,9 +71,9 @@ begin
   FField.buscar(AExibirCamposHerdados, ACampo);
 end;
 
-procedure TMainController.listarPropertys(AExibirCamposHerdados: Boolean);
+procedure TMainController.buscarMethods(AExibirCamposHerdados: Boolean; ACampo: String);
 begin
-  FProperty.listar(AExibirCamposHerdados);
+  FMethod.buscar(AExibirCamposHerdados, ACampo);
 end;
 
 procedure TMainController.buscarPorPropertys(AExibirCamposHerdados: Boolean; ACampo: String);
