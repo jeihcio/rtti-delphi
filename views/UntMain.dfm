@@ -94,6 +94,15 @@ object FrmMain: TFrmMain
       TabOrder = 4
       OnClick = listarFieldsClick
     end
+    object listarMethods: TButton
+      Left = 228
+      Top = 6
+      Width = 105
+      Height = 25
+      Caption = 'Listar m'#233'todos'
+      TabOrder = 5
+      OnClick = listarFieldsClick
+    end
   end
   object Menu: TPopupMenu
     Left = 384

@@ -10,10 +10,12 @@ uses
 
 type
   TEvento = (
-   listarFields,
-   buscarPorField,
-   listarPropertys,
-   buscarPorPropertys);
+    listarFields,
+    buscarPorField,
+    listarPropertys,
+    buscarPorPropertys,
+    listarMethods
+  );
 
   TFrmMain = class(TForm)
     Resultado: TTreeView;
@@ -27,6 +29,7 @@ type
     buscarPorField: TButton;
     listarPropertys: TButton;
     buscarPorPropertys: TButton;
+    listarMethods: TButton;
     procedure FormCreate(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure listarFieldsClick(Sender: TObject);
@@ -99,6 +102,7 @@ begin
    Case AEvento Of
       TEvento.listarFields: FController.listarFields(ExibirRecursosHerdados.Checked);
       TEvento.listarPropertys: FController.listarPropertys(ExibirRecursosHerdados.Checked);
+      TEvento.listarMethods: FController.listarMethods(ExibirRecursosHerdados.Checked);
 
       TEvento.buscarPorField,
       TEvento.buscarPorPropertys:

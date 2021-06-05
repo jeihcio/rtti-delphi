@@ -3,7 +3,8 @@ unit UntMainController;
 interface
 
 uses
-  System.Rtti, Vcl.ComCtrls, System.TypInfo, UntTreeView, UntFields, UntProperty;
+  System.Rtti, Vcl.ComCtrls, System.TypInfo, UntTreeView, UntFields,
+  UntProperty, UntMethod;
 
 type
   TMainController = class
@@ -11,6 +12,7 @@ type
     FExibirResultado: TExibirResultadoTreeView;
     FField: TField;
     FProperty: TProperty;
+    FMethod: TMethod;
   public
     Constructor Create(ATreeView: TTreeView); reintroduce;
     destructor Destroy(); override;
@@ -20,6 +22,8 @@ type
 
     procedure listarPropertys(AExibirCamposHerdados: Boolean);
     procedure buscarPorPropertys(AExibirCamposHerdados: Boolean; ACampo: String);
+
+    procedure listarMethods(AExibirCamposHerdados: Boolean);
   end;
 
 implementation
@@ -35,6 +39,7 @@ begin
 
   FField := TField.Create(FExibirResultado);
   FProperty := TProperty.Create(FExibirResultado);
+  FMethod := TMethod.Create(FExibirResultado);
 end;
 
 destructor TMainController.Destroy;
@@ -42,12 +47,18 @@ begin
   FExibirResultado.Free;
   FField.Free;
   FProperty.Free;
+  FMethod.Free;
   inherited;
 end;
 
 procedure TMainController.listarFields(AExibirCamposHerdados: Boolean);
 begin
   FField.listar(AExibirCamposHerdados);
+end;
+
+procedure TMainController.listarMethods(AExibirCamposHerdados: Boolean);
+begin
+  FMethod.listar(AExibirCamposHerdados);
 end;
 
 procedure TMainController.buscarPorField(AExibirCamposHerdados: Boolean; ACampo: String);

@@ -11,7 +11,8 @@ uses
   UntClasseExampleHeranca in 'model\UntClasseExampleHeranca.pas',
   UntRttiUtil in 'controller\UntRttiUtil.pas',
   UntICampo in 'controller\interface\UntICampo.pas',
-  UntIDadosRtti in 'controller\interface\UntIDadosRtti.pas';
+  UntIDadosRtti in 'controller\interface\UntIDadosRtti.pas',
+  UntMethod in 'controller\UntMethod.pas';
 
 {$R *.res}
 
