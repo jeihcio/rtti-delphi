@@ -3,7 +3,7 @@
 Exemplo de como obter informações de uma classe em tempo de execução. <br/>
 Informações que o programa obtém: 
 
-* Listas fields
-* Busca field específica 
+* Listar fields
+* Buscar field específica 
 * listar propertys
-* Buscar propertys específica 
+* Buscar property específica 
