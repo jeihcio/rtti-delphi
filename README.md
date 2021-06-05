@@ -7,3 +7,4 @@ Informações que o programa obtém:
 * Buscar field específica 
 * listar propertys
 * Buscar property específica 
+* Listar methods
