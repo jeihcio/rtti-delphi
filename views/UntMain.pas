@@ -12,7 +12,8 @@ type
   TEvento = (
    obterFields,
    buscarPorField,
-   obterPropertys);
+   obterPropertys,
+   buscarPorPropertys);
 
   TFrmMain = class(TForm)
     Resultado: TTreeView;
@@ -25,6 +26,7 @@ type
     obterFields: TButton;
     buscarPorField: TButton;
     obterPropertys: TButton;
+    buscarPorPropertys: TButton;
     procedure FormCreate(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure obterFieldsClick(Sender: TObject);
@@ -96,14 +98,18 @@ begin
 
    Case AEvento Of
       TEvento.obterFields: FController.obterFields(ExibirRecursosHerdados.Checked);
+      TEvento.obterPropertys: FController.obterPropertys(ExibirRecursosHerdados.Checked);
 
-      TEvento.buscarPorField:
+      TEvento.buscarPorField,
+      TEvento.buscarPorPropertys:
         Begin
            entradaDado := Dialogs.InputBox('Buscar', 'Campo', String.Empty);
-           FController.buscarPorField(ExibirRecursosHerdados.Checked, entradaDado);
-        End;
 
-      TEvento.obterPropertys: FController.obterPropertys(ExibirRecursosHerdados.Checked);
+           Case AEvento Of
+             TEvento.buscarPorField: FController.buscarPorField(ExibirRecursosHerdados.Checked, entradaDado);
+             TEvento.buscarPorPropertys: FController.buscarPorPropertys(ExibirRecursosHerdados.Checked, entradaDado);
+           End;
+        End;
    End;
 
    Resultado.FullExpand;

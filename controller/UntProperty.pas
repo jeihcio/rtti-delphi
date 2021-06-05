@@ -29,7 +29,34 @@ begin
 end;
 
 procedure TProperty.buscar(AExibirCamposHerdados: Boolean; ACampo: String);
+var
+  Exemplo: TClasseExemplo;
+  Contexto: TRttiContext;
+  Tipo: TRttiType;
+  Propriedade: TRttiProperty;
+  PropriedadeIndexada: TRttiInstanceProperty;
 begin
+  Exemplo := TClasseExemplo.Create;
+  try
+    Tipo := Contexto.GetType(Exemplo.ClassInfo);
+    FExibirResultado.addNaTreeView(Tipo.Name);
+
+    Propriedade := Tipo.GetProperty(ACampo);
+    if Assigned(Propriedade) then
+      begin
+        If isPularPropriedadeHerdada(AExibirCamposHerdados, Propriedade, Tipo.Name) Then exit;
+
+        PropriedadeIndexada := TRttiInstanceProperty(Propriedade);
+        FExibirResultado.addNaTreeView(Propriedade.Visibility, Propriedade.Name, [
+          'Tipo: ' + Propriedade.PropertyType.ToString,
+          'Visibilidade: ' + GetEnumName(TypeInfo(TMemberVisibility), Integer(Propriedade.Visibility)),
+          'Valor: ' + Propriedade.GetValue(Exemplo).ToString,
+          'Índice: ' + IntToStr(PropriedadeIndexada.Index)
+        ]);
+      end;
+  finally
+    Exemplo.Free;
+  end;
 end;
 
 procedure TProperty.obter(AExibirCamposHerdados: Boolean);

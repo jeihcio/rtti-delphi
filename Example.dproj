@@ -89,6 +89,7 @@
         <DCCReference Include="controller\UntProperty.pas"/>
         <DCCReference Include="model\UntClasseExampleHeranca.pas"/>
         <DCCReference Include="controller\UntRttiUtil.pas"/>
+        <DCCReference Include="controller\interface\UntICampo.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

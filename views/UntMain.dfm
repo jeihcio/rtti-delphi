@@ -85,6 +85,15 @@ object FrmMain: TFrmMain
       TabOrder = 3
       OnClick = obterFieldsClick
     end
+    object buscarPorPropertys: TButton
+      Left = 103
+      Top = 37
+      Width = 91
+      Height = 25
+      Caption = 'Buscar propertys'
+      TabOrder = 4
+      OnClick = obterFieldsClick
+    end
   end
   object Menu: TPopupMenu
     Left = 384
