@@ -3,17 +3,17 @@ unit UntFields;
 interface
 
 uses
-  UntTreeView, System.Rtti, UntRttiUtil;
+  UntTreeView, System.Rtti, UntRttiUtil, UntICampo;
 
 type
-  TField = class
+  TField = class(TInterfacedObject, ICampo)
   private
     FExibirResultado: TExibirResultadoTreeView;
   public
     constructor Create(AExibirResultado: TExibirResultadoTreeView); reintroduce;
 
-    procedure obterFields(AExibirCamposHerdados: Boolean);
-    procedure buscarPorField(AExibirCamposHerdados: Boolean; ACampo: String);
+    procedure obter(AExibirCamposHerdados: Boolean);
+    procedure buscar(AExibirCamposHerdados: Boolean; ACampo: String);
   end;
 
 implementation
@@ -28,7 +28,7 @@ begin
   FExibirResultado := AExibirResultado;
 end;
 
-procedure TField.obterFields(AExibirCamposHerdados: Boolean);
+procedure TField.obter(AExibirCamposHerdados: Boolean);
 var
   Exemplo: TClasseExemplo;
   Contexto: TRttiContext;
@@ -57,7 +57,7 @@ begin
   end;
 end;
 
-procedure TField.buscarPorField(AExibirCamposHerdados: Boolean; ACampo: String);
+procedure TField.buscar(AExibirCamposHerdados: Boolean; ACampo: String);
 var
   Exemplo: TClasseExemplo;
   Contexto: TRttiContext;

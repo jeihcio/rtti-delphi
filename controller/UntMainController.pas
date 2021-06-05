@@ -47,22 +47,22 @@ end;
 
 procedure TMainController.obterFields(AExibirCamposHerdados: Boolean);
 begin
-  FField.obterFields(AExibirCamposHerdados);
+  FField.obter(AExibirCamposHerdados);
 end;
 
 procedure TMainController.buscarPorField(AExibirCamposHerdados: Boolean; ACampo: String);
 begin
-  FField.buscarPorField(AExibirCamposHerdados, ACampo);
+  FField.buscar(AExibirCamposHerdados, ACampo);
 end;
 
 procedure TMainController.obterPropertys(AExibirCamposHerdados: Boolean);
 begin
-  FProperty.obterPropertys(AExibirCamposHerdados);
+  FProperty.obter(AExibirCamposHerdados);
 end;
 
 procedure TMainController.buscarPorPropertys(AExibirCamposHerdados: Boolean; ACampo: String);
 begin
-  FProperty.buscarPorPropertys(AExibirCamposHerdados, ACampo);
+  FProperty.buscar(AExibirCamposHerdados, ACampo);
 end;
 
 end.

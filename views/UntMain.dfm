@@ -68,8 +68,8 @@ object FrmMain: TFrmMain
       OnClick = obterFieldsClick
     end
     object buscarPorField: TButton
-      Left = 6
-      Top = 37
+      Left = 103
+      Top = 6
       Width = 91
       Height = 25
       Caption = 'Buscar campo'
@@ -77,8 +77,8 @@ object FrmMain: TFrmMain
       OnClick = obterFieldsClick
     end
     object obterPropertys: TButton
-      Left = 103
-      Top = 6
+      Left = 6
+      Top = 37
       Width = 91
       Height = 25
       Caption = 'Obter propertys'
