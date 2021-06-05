@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.ExtCtrls, Vcl.StdCtrls,
-  UntMainController, Vcl.ComCtrls;
+  UntMainController, Vcl.ComCtrls, Vcl.Menus;
 
 type
   TEvento = (obterFields, buscarPorField);
@@ -16,9 +16,14 @@ type
     Button3: TButton;
     Button4: TButton;
     Resultado: TTreeView;
+    Menu: TPopupMenu;
+    Abrirtudo: TMenuItem;
+    Fechartudo: TMenuItem;
     procedure FormCreate(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure obterFieldsClick(Sender: TObject);
+    procedure AbrirtudoClick(Sender: TObject);
+    procedure FechartudoClick(Sender: TObject);
   private
     FController: TMainController;
     procedure acionarEvento(AEvento: TEvento); overload;
@@ -56,9 +61,19 @@ begin
    acionarEvento(evento);
 end;
 
+procedure TFrmMain.FechartudoClick(Sender: TObject);
+begin
+   Resultado.FullCollapse;
+end;
+
 procedure TFrmMain.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
    FController.Free;
+end;
+
+procedure TFrmMain.AbrirtudoClick(Sender: TObject);
+begin
+  Resultado.FullExpand;
 end;
 
 procedure TFrmMain.acionarEvento(AEvento: TEvento);

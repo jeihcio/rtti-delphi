@@ -129,10 +129,23 @@ object FrmMain: TFrmMain
     Height = 406
     Align = alClient
     Indent = 19
+    PopupMenu = Menu
     TabOrder = 1
     ExplicitLeft = 168
     ExplicitTop = 240
     ExplicitWidth = 121
     ExplicitHeight = 97
+  end
+  object Menu: TPopupMenu
+    Left = 384
+    Top = 16
+    object Abrirtudo: TMenuItem
+      Caption = 'Abrir tudo'
+      OnClick = AbrirtudoClick
+    end
+    object Fechartudo: TMenuItem
+      Caption = 'Fechar tudo'
+      OnClick = FechartudoClick
+    end
   end
 end
