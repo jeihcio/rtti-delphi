@@ -9,6 +9,7 @@ type
     FIdade: Integer;
     FCampoPrivado: String;
     FIsHomem: Boolean;
+    FCampoPublicado: String;
     property privado: String read FCampoPrivado write FCampoPrivado;
     procedure Privada();
   public
@@ -25,7 +26,6 @@ type
     procedure procedureProtegida();
     function funcaoProtegida(): String;
   published
-    FCampoPublicado: String;
     property CampoPublicado: String read FCampoPublicado write FCampoPublicado;
     procedure procedurePublicada();
     function funcaoPublicada(): String;
