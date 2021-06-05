@@ -8,26 +8,30 @@ uses
   UntMainController, Vcl.ComCtrls;
 
 type
-  TEvento = (obterFields);
+  TEvento = (obterFields, buscarPorField);
   TFrmMain = class(TForm)
     GridPanel1: TGridPanel;
-    BtnFields: TButton;
-    Button2: TButton;
+    obterFields: TButton;
+    buscarPorField: TButton;
     Button3: TButton;
     Button4: TButton;
     Resultado: TTreeView;
     procedure FormCreate(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
-    procedure BtnFieldsClick(Sender: TObject);
+    procedure obterFieldsClick(Sender: TObject);
   private
     FController: TMainController;
-    procedure acionarEvento(AEvento: TEvento);
+    procedure acionarEvento(AEvento: TEvento); overload;
+    procedure acionarEvento(Sender: TObject); overload;
   end;
 
 var
   FrmMain: TFrmMain;
 
 implementation
+
+uses
+  System.TypInfo;
 
 {$R *.dfm}
 
@@ -36,9 +40,20 @@ begin
    FController := TMainController.Create(Resultado);
 end;
 
-procedure TFrmMain.BtnFieldsClick(Sender: TObject);
+procedure TFrmMain.obterFieldsClick(Sender: TObject);
 begin
-   acionarEvento(obterFields);
+   acionarEvento(Sender);
+end;
+
+procedure TFrmMain.acionarEvento(Sender: TObject);
+var
+  nomeEvento: String;
+  evento: TEvento;
+begin
+   nomeEvento := TButton(Sender).Name;
+   evento := TEvento(GetEnumValue(TypeInfo(TEvento), nomeEvento));
+
+   acionarEvento(evento);
 end;
 
 procedure TFrmMain.FormClose(Sender: TObject; var Action: TCloseAction);
@@ -48,10 +63,10 @@ end;
 
 procedure TFrmMain.acionarEvento(AEvento: TEvento);
 begin
-   resultado.Items.Clear;
+   Resultado.Items.Clear;
 
    Case AEvento Of
-      obterFields: FController.obterFields();
+      TEvento.obterFields: FController.obterFields();
    End;
 
    Resultado.FullExpand;

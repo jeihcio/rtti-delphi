@@ -20,10 +20,10 @@ object FrmMain: TFrmMain
   TextHeight = 13
   object GridPanel1: TGridPanel
     Left = 0
-    Top = 0
+    Top = 406
     Width = 450
     Height = 105
-    Align = alTop
+    Align = alBottom
     BevelOuter = bvNone
     ColumnCollection = <
       item
@@ -35,12 +35,12 @@ object FrmMain: TFrmMain
     ControlCollection = <
       item
         Column = 0
-        Control = BtnFields
+        Control = obterFields
         Row = 0
       end
       item
         Column = 1
-        Control = Button2
+        Control = buscarPorField
         Row = 0
       end
       item
@@ -65,8 +65,9 @@ object FrmMain: TFrmMain
         Value = 50.000000000000000000
       end>
     TabOrder = 0
+    ExplicitTop = 0
     ExplicitWidth = 457
-    object BtnFields: TButton
+    object obterFields: TButton
       Left = 10
       Top = 10
       Width = 210
@@ -74,18 +75,19 @@ object FrmMain: TFrmMain
       Align = alClient
       Caption = 'Listar Campos'
       TabOrder = 0
-      OnClick = BtnFieldsClick
+      OnClick = obterFieldsClick
       ExplicitWidth = 208
       ExplicitHeight = 15
     end
-    object Button2: TButton
+    object buscarPorField: TButton
       Left = 230
       Top = 10
       Width = 210
       Height = 37
       Align = alClient
-      Caption = 'Button1'
+      Caption = 'Buscar Campo '
       TabOrder = 1
+      OnClick = obterFieldsClick
       ExplicitLeft = 302
       ExplicitTop = 16
       ExplicitWidth = 208
@@ -99,6 +101,7 @@ object FrmMain: TFrmMain
       Align = alClient
       Caption = 'Button1'
       TabOrder = 2
+      OnClick = obterFieldsClick
       ExplicitLeft = 79
       ExplicitTop = 63
       ExplicitWidth = 208
@@ -112,6 +115,7 @@ object FrmMain: TFrmMain
       Align = alClient
       Caption = 'Button1'
       TabOrder = 3
+      OnClick = obterFieldsClick
       ExplicitLeft = 302
       ExplicitTop = 63
       ExplicitWidth = 208
@@ -120,7 +124,7 @@ object FrmMain: TFrmMain
   end
   object Resultado: TTreeView
     Left = 0
-    Top = 105
+    Top = 0
     Width = 450
     Height = 406
     Align = alClient
