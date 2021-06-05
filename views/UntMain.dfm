@@ -58,14 +58,14 @@ object FrmMain: TFrmMain
       ExplicitTop = 114
       ExplicitWidth = 436
     end
-    object obterFields: TButton
+    object listarFields: TButton
       Left = 6
       Top = 6
       Width = 105
       Height = 25
-      Caption = 'Obter campos'
+      Caption = 'Listar campos'
       TabOrder = 1
-      OnClick = obterFieldsClick
+      OnClick = listarFieldsClick
     end
     object buscarPorField: TButton
       Left = 117
@@ -74,16 +74,16 @@ object FrmMain: TFrmMain
       Height = 25
       Caption = 'Buscar campo'
       TabOrder = 2
-      OnClick = obterFieldsClick
+      OnClick = listarFieldsClick
     end
-    object obterPropertys: TButton
+    object listarPropertys: TButton
       Left = 6
       Top = 37
       Width = 105
       Height = 25
-      Caption = 'Obter propertys'
+      Caption = 'Listar propertys'
       TabOrder = 3
-      OnClick = obterFieldsClick
+      OnClick = listarFieldsClick
     end
     object buscarPorPropertys: TButton
       Left = 117
@@ -92,7 +92,7 @@ object FrmMain: TFrmMain
       Height = 25
       Caption = 'Buscar propertys'
       TabOrder = 4
-      OnClick = obterFieldsClick
+      OnClick = listarFieldsClick
     end
   end
   object Menu: TPopupMenu

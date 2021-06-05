@@ -10,9 +10,9 @@ uses
 
 type
   TEvento = (
-   obterFields,
+   listarFields,
    buscarPorField,
-   obterPropertys,
+   listarPropertys,
    buscarPorPropertys);
 
   TFrmMain = class(TForm)
@@ -23,13 +23,13 @@ type
     Limpartudo: TMenuItem;
     Panel1: TPanel;
     ExibirRecursosHerdados: TCheckBox;
-    obterFields: TButton;
+    listarFields: TButton;
     buscarPorField: TButton;
-    obterPropertys: TButton;
+    listarPropertys: TButton;
     buscarPorPropertys: TButton;
     procedure FormCreate(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
-    procedure obterFieldsClick(Sender: TObject);
+    procedure listarFieldsClick(Sender: TObject);
     procedure AbrirtudoClick(Sender: TObject);
     procedure FechartudoClick(Sender: TObject);
     procedure LimpartudoClick(Sender: TObject);
@@ -59,7 +59,7 @@ begin
    Resultado.Items.Clear;
 end;
 
-procedure TFrmMain.obterFieldsClick(Sender: TObject);
+procedure TFrmMain.listarFieldsClick(Sender: TObject);
 begin
    acionarEvento(Sender);
 end;
@@ -97,8 +97,8 @@ begin
    Resultado.Items.Clear;
 
    Case AEvento Of
-      TEvento.obterFields: FController.obterFields(ExibirRecursosHerdados.Checked);
-      TEvento.obterPropertys: FController.obterPropertys(ExibirRecursosHerdados.Checked);
+      TEvento.listarFields: FController.listarFields(ExibirRecursosHerdados.Checked);
+      TEvento.listarPropertys: FController.listarPropertys(ExibirRecursosHerdados.Checked);
 
       TEvento.buscarPorField,
       TEvento.buscarPorPropertys:

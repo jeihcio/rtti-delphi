@@ -15,10 +15,10 @@ type
     Constructor Create(ATreeView: TTreeView); reintroduce;
     destructor Destroy(); override;
 
-    procedure obterFields(AExibirCamposHerdados: Boolean);
+    procedure listarFields(AExibirCamposHerdados: Boolean);
     procedure buscarPorField(AExibirCamposHerdados: Boolean; ACampo: String);
 
-    procedure obterPropertys(AExibirCamposHerdados: Boolean);
+    procedure listarPropertys(AExibirCamposHerdados: Boolean);
     procedure buscarPorPropertys(AExibirCamposHerdados: Boolean; ACampo: String);
   end;
 
@@ -45,7 +45,7 @@ begin
   inherited;
 end;
 
-procedure TMainController.obterFields(AExibirCamposHerdados: Boolean);
+procedure TMainController.listarFields(AExibirCamposHerdados: Boolean);
 begin
   FField.listar(AExibirCamposHerdados);
 end;
@@ -55,7 +55,7 @@ begin
   FField.buscar(AExibirCamposHerdados, ACampo);
 end;
 
-procedure TMainController.obterPropertys(AExibirCamposHerdados: Boolean);
+procedure TMainController.listarPropertys(AExibirCamposHerdados: Boolean);
 begin
   FProperty.listar(AExibirCamposHerdados);
 end;
