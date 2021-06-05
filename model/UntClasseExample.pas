@@ -40,7 +40,8 @@ implementation
 
 procedure TClasseExemplo.fazAlgo;
 begin
-
+  privado := 'privado';
+  Privada();
 end;
 
 function TClasseExemplo.fazOutroAlgo: String;
