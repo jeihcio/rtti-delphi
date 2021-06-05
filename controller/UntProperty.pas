@@ -75,7 +75,6 @@ var
   Contexto: TRttiContext;
   Tipo: TRttiType;
   Propriedade: TRttiProperty;
-  PropriedadeIndexada: TRttiInstanceProperty;
 begin
   Exemplo := TClasseExemplo.Create;
   try
