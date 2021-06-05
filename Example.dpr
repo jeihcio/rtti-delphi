@@ -6,7 +6,8 @@ uses
   UntClasseExample in 'model\UntClasseExample.pas',
   UntMainController in 'controller\UntMainController.pas',
   UntTreeView in 'controller\UntTreeView.pas',
-  UntFields in 'controller\UntFields.pas';
+  UntFields in 'controller\UntFields.pas',
+  UntProperty in 'controller\UntProperty.pas';
 
 {$R *.res}
 

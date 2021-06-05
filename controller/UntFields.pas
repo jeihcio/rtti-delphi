@@ -6,7 +6,7 @@ uses
   UntTreeView;
 
 type
-  TFields = class
+  TField = class
   private
     FExibirResultado: TExibirResultadoTreeView;
   public
@@ -23,12 +23,12 @@ uses
 
 { TFields }
 
-constructor TFields.Create(AExibirResultado: TExibirResultadoTreeView);
+constructor TField.Create(AExibirResultado: TExibirResultadoTreeView);
 begin
   FExibirResultado := AExibirResultado;
 end;
 
-procedure TFields.obterFields;
+procedure TField.obterFields;
 var
   Exemplo: TClasseExemplo;
   Contexto: TRttiContext;
@@ -54,7 +54,7 @@ begin
   end;
 end;
 
-procedure TFields.buscarPorField(ACampo: String);
+procedure TField.buscarPorField(ACampo: String);
 var
   Exemplo: TClasseExemplo;
   Contexto: TRttiContext;

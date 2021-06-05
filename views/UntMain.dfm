@@ -45,7 +45,7 @@ object FrmMain: TFrmMain
       end
       item
         Column = 0
-        Control = Button3
+        Control = obterPropertys
         Row = 1
       end
       item
@@ -93,13 +93,13 @@ object FrmMain: TFrmMain
       ExplicitWidth = 208
       ExplicitHeight = 15
     end
-    object Button3: TButton
+    object obterPropertys: TButton
       Left = 10
       Top = 57
       Width = 210
       Height = 38
       Align = alClient
-      Caption = 'Button1'
+      Caption = 'Listar Propertys'
       TabOrder = 2
       OnClick = obterFieldsClick
       ExplicitLeft = 79
@@ -146,6 +146,10 @@ object FrmMain: TFrmMain
     object Fechartudo: TMenuItem
       Caption = 'Fechar tudo'
       OnClick = FechartudoClick
+    end
+    object Limpartudo: TMenuItem
+      Caption = 'Limpar tudo'
+      OnClick = LimpartudoClick
     end
   end
 end

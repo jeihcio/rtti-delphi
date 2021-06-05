@@ -8,22 +8,28 @@ uses
   UntMainController, Vcl.ComCtrls, Vcl.Menus;
 
 type
-  TEvento = (obterFields, buscarPorField);
+  TEvento = (
+   obterFields,
+   buscarPorField,
+   obterPropertys);
+
   TFrmMain = class(TForm)
     GridPanel1: TGridPanel;
     obterFields: TButton;
     buscarPorField: TButton;
-    Button3: TButton;
+    obterPropertys: TButton;
     Button4: TButton;
     Resultado: TTreeView;
     Menu: TPopupMenu;
     Abrirtudo: TMenuItem;
     Fechartudo: TMenuItem;
+    Limpartudo: TMenuItem;
     procedure FormCreate(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure obterFieldsClick(Sender: TObject);
     procedure AbrirtudoClick(Sender: TObject);
     procedure FechartudoClick(Sender: TObject);
+    procedure LimpartudoClick(Sender: TObject);
   private
     FController: TMainController;
     procedure acionarEvento(AEvento: TEvento); overload;
@@ -43,6 +49,11 @@ uses
 procedure TFrmMain.FormCreate(Sender: TObject);
 begin
    FController := TMainController.Create(Resultado);
+end;
+
+procedure TFrmMain.LimpartudoClick(Sender: TObject);
+begin
+   Resultado.Items.Clear;
 end;
 
 procedure TFrmMain.obterFieldsClick(Sender: TObject);
@@ -90,6 +101,8 @@ begin
            entradaDado := Dialogs.InputBox('Buscar', 'Campo', String.Empty);
            FController.buscarPorField(entradaDado);
         End;
+
+      TEvento.obterPropertys: FController.obterPropertys();
    End;
 
    Resultado.FullExpand;
