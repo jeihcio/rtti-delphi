@@ -3,13 +3,12 @@ unit UntProperty;
 interface
 
 uses
-  UntTreeView, System.Rtti;
+  UntTreeView, System.Rtti, UntRttiUtil;
 
 type
   TProperty = class
   private
     FExibirResultado: TExibirResultadoTreeView;
-    function isPularPropriedadeHerdada(AExibirCamposHerdados: Boolean; APropriedade: TRttiMember; ANomePai: String): Boolean;
   public
     constructor Create(AExibirResultado: TExibirResultadoTreeView); reintroduce;
 
@@ -27,19 +26,6 @@ uses
 constructor TProperty.Create(AExibirResultado: TExibirResultadoTreeView);
 begin
   FExibirResultado := AExibirResultado;
-end;
-
-function TProperty.isPularPropriedadeHerdada(AExibirCamposHerdados: Boolean; APropriedade: TRttiMember;
-  ANomePai: String): Boolean;
-var
-  cNomeClassePai: String;
-begin
-   Result := False;
-   If Not AExibirCamposHerdados Then
-      Begin
-         cNomeClassePai := TRttiInstanceType(APropriedade.Parent).MetaclassType.ClassName;
-         Result := (cNomeClassePai <> ANomePai);
-      End;
 end;
 
 procedure TProperty.buscarPorPropertys(AExibirCamposHerdados: Boolean; ACampo: String);

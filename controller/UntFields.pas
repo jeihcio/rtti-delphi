@@ -3,14 +3,12 @@ unit UntFields;
 interface
 
 uses
-  UntTreeView, System.Rtti;
+  UntTreeView, System.Rtti, UntRttiUtil;
 
 type
   TField = class
   private
     FExibirResultado: TExibirResultadoTreeView;
-    function isPularPropriedadeHerdada(AExibirCamposHerdados: Boolean;
-      APropriedade: TRttiMember; ANomePai: String): Boolean;
   public
     constructor Create(AExibirResultado: TExibirResultadoTreeView); reintroduce;
 
@@ -28,19 +26,6 @@ uses
 constructor TField.Create(AExibirResultado: TExibirResultadoTreeView);
 begin
   FExibirResultado := AExibirResultado;
-end;
-
-function TField.isPularPropriedadeHerdada(AExibirCamposHerdados: Boolean;
-  APropriedade: TRttiMember; ANomePai: String): Boolean;
-var
-  cNomeClassePai: String;
-begin
-   Result := False;
-   If Not AExibirCamposHerdados Then
-      Begin
-         cNomeClassePai := TRttiInstanceType(APropriedade.Parent).MetaclassType.ClassName;
-         Result := (cNomeClassePai <> ANomePai);
-      End;
 end;
 
 procedure TField.obterFields(AExibirCamposHerdados: Boolean);
