@@ -4,8 +4,8 @@ object FrmMain: TFrmMain
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle
   Caption = 'Run-time type information'
-  ClientHeight = 511
-  ClientWidth = 450
+  ClientHeight = 430
+  ClientWidth = 340
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -21,8 +21,8 @@ object FrmMain: TFrmMain
   object Resultado: TTreeView
     Left = 0
     Top = 0
-    Width = 450
-    Height = 416
+    Width = 340
+    Height = 335
     Align = alClient
     BevelInner = bvNone
     BevelOuter = bvNone
@@ -32,19 +32,23 @@ object FrmMain: TFrmMain
     PopupMenu = Menu
     ReadOnly = True
     TabOrder = 0
+    ExplicitWidth = 450
+    ExplicitHeight = 416
   end
   object Panel1: TPanel
     Left = 0
-    Top = 416
-    Width = 450
+    Top = 335
+    Width = 340
     Height = 95
     Align = alBottom
     TabOrder = 1
+    ExplicitTop = 416
+    ExplicitWidth = 450
     object ExibirRecursosHerdados: TCheckBox
       AlignWithMargins = True
       Left = 6
       Top = 72
-      Width = 440
+      Width = 330
       Height = 17
       Margins.Left = 5
       Margins.Bottom = 5
@@ -53,6 +57,7 @@ object FrmMain: TFrmMain
       Checked = True
       State = cbChecked
       TabOrder = 0
+      ExplicitWidth = 440
     end
     object listarFields: TButton
       Left = 6
@@ -64,8 +69,8 @@ object FrmMain: TFrmMain
       OnClick = listarFieldsClick
     end
     object buscarPorField: TButton
-      Left = 117
-      Top = 6
+      Left = 6
+      Top = 37
       Width = 105
       Height = 25
       Caption = 'Buscar campo'
@@ -73,8 +78,8 @@ object FrmMain: TFrmMain
       OnClick = listarFieldsClick
     end
     object listarPropertys: TButton
-      Left = 6
-      Top = 37
+      Left = 117
+      Top = 6
       Width = 105
       Height = 25
       Caption = 'Listar propertys'
