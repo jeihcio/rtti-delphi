@@ -24,6 +24,8 @@ type
     procedure buscarPorField(AExibirCamposHerdados: Boolean; ACampo: String);
     procedure buscarPorPropertys(AExibirCamposHerdados: Boolean; ACampo: String);
     procedure buscarMethods(AExibirCamposHerdados: Boolean; ACampo: String);
+
+    procedure invocarMethods(AExibirCamposHerdados: Boolean; ACampo: String);
   end;
 
 implementation
@@ -79,6 +81,11 @@ end;
 procedure TMainController.buscarPorPropertys(AExibirCamposHerdados: Boolean; ACampo: String);
 begin
   FProperty.buscar(AExibirCamposHerdados, ACampo);
+end;
+
+procedure TMainController.invocarMethods(AExibirCamposHerdados: Boolean; ACampo: String);
+begin
+  FMethod.invocarMethods(AExibirCamposHerdados, ACampo);
 end;
 
 end.

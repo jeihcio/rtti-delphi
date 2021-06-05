@@ -4,7 +4,7 @@ object FrmMain: TFrmMain
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle
   Caption = 'Run-time type information'
-  ClientHeight = 430
+  ClientHeight = 447
   ClientWidth = 340
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -22,7 +22,7 @@ object FrmMain: TFrmMain
     Left = 0
     Top = 0
     Width = 340
-    Height = 335
+    Height = 328
     Align = alClient
     BevelInner = bvNone
     BevelOuter = bvNone
@@ -32,22 +32,19 @@ object FrmMain: TFrmMain
     PopupMenu = Menu
     ReadOnly = True
     TabOrder = 0
-    ExplicitWidth = 450
-    ExplicitHeight = 416
+    ExplicitHeight = 329
   end
   object Panel1: TPanel
     Left = 0
-    Top = 335
+    Top = 328
     Width = 340
-    Height = 95
+    Height = 119
     Align = alBottom
     TabOrder = 1
-    ExplicitTop = 416
-    ExplicitWidth = 450
     object ExibirRecursosHerdados: TCheckBox
       AlignWithMargins = True
       Left = 6
-      Top = 72
+      Top = 96
       Width = 330
       Height = 17
       Margins.Left = 5
@@ -57,6 +54,7 @@ object FrmMain: TFrmMain
       Checked = True
       State = cbChecked
       TabOrder = 0
+      ExplicitTop = 72
       ExplicitWidth = 440
     end
     object listarFields: TButton
@@ -111,6 +109,15 @@ object FrmMain: TFrmMain
       Height = 25
       Caption = 'Buscar m'#233'todo'
       TabOrder = 6
+      OnClick = listarFieldsClick
+    end
+    object invocarMethod: TButton
+      Left = 228
+      Top = 68
+      Width = 105
+      Height = 25
+      Caption = 'Invocar m'#233'todo'
+      TabOrder = 7
       OnClick = listarFieldsClick
     end
   end

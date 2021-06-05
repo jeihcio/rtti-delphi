@@ -14,12 +14,13 @@ type
     constructor Create(AExibirResultado: TExibirResultadoTreeView); reintroduce;
     procedure listar(AExibirCamposHerdados: Boolean);
     procedure buscar(AExibirCamposHerdados: Boolean; ACampo: String);
+    procedure invocarMethods(AExibirCamposHerdados: Boolean; ACampo: String);
   end;
 
 implementation
 
 uses
-  UntClasseExample, UntRttiUtil, System.TypInfo, System.Classes;
+  UntClasseExample, UntRttiUtil, System.TypInfo, System.Classes, Dialogs;
 
 { TMethods }
 
@@ -108,6 +109,31 @@ begin
         Exemplo,
         Metodo,
         Tipo);
+  finally
+    Exemplo.Free;
+  end;
+end;
+
+procedure TMethod.invocarMethods(AExibirCamposHerdados: Boolean;
+  ACampo: String);
+var
+  Exemplo: TClasseExemplo;
+  Contexto: TRttiContext;
+  Tipo: TRttiType;
+  Metodo: TRttiMethod;
+  Resultado: TValue;
+begin
+  Exemplo := TClasseExemplo.Create;
+  try
+    Tipo := Contexto.GetType(Exemplo.ClassInfo);
+    Metodo := Tipo.GetMethod(ACampo);
+    if Assigned(Metodo) then
+      begin
+         If isPularPropriedadeHerdada(AExibirCamposHerdados, Metodo, Tipo.Name) Then Exit;
+
+         Resultado := Metodo.Invoke(Exemplo, ['Valor do parâmetro']);
+         ShowMessage(Resultado.ToString);
+      end;
   finally
     Exemplo.Free;
   end;

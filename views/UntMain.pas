@@ -16,7 +16,9 @@ type
 
     buscarPorPropertys,
     buscarPorField,
-    buscarMethods
+    buscarMethods,
+
+    invocarMethod
   );
 
   TFrmMain = class(TForm)
@@ -33,6 +35,7 @@ type
     buscarPorPropertys: TButton;
     listarMethods: TButton;
     buscarMethods: TButton;
+    invocarMethod: TButton;
     procedure FormCreate(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure listarFieldsClick(Sender: TObject);
@@ -118,6 +121,12 @@ begin
              TEvento.buscarPorPropertys: FController.buscarPorPropertys(ExibirRecursosHerdados.Checked, entradaDado);
              TEvento.buscarMethods: FController.buscarMethods(ExibirRecursosHerdados.Checked, entradaDado);
            End;
+        End;
+
+      TEvento.invocarMethod:
+        Begin
+           FController.invocarMethods(ExibirRecursosHerdados.Checked, 'fazOutroAlgo2');
+           FController.invocarMethods(ExibirRecursosHerdados.Checked, 'procedurePublicHeranca2');
         End;
    End;
 

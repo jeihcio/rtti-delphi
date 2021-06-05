@@ -38,6 +38,9 @@ type
 
 implementation
 
+uses
+  Dialogs;
+
 { TPessoa }
 
 procedure TClasseExemplo.fazAlgo;
@@ -53,7 +56,8 @@ end;
 
 function TClasseExemplo.fazOutroAlgo2(ATeste: String): String;
 begin
-
+  ShowMessage('Método da classe principal: ' + ATeste);
+  Result := 'Resultado do método da classe principal';
 end;
 
 function TClasseExemplo.fazOutroAlgo3(ATeste, ATeste2: String;
