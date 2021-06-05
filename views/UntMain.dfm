@@ -61,16 +61,16 @@ object FrmMain: TFrmMain
     object obterFields: TButton
       Left = 6
       Top = 6
-      Width = 91
+      Width = 105
       Height = 25
       Caption = 'Obter campos'
       TabOrder = 1
       OnClick = obterFieldsClick
     end
     object buscarPorField: TButton
-      Left = 103
+      Left = 117
       Top = 6
-      Width = 91
+      Width = 105
       Height = 25
       Caption = 'Buscar campo'
       TabOrder = 2
@@ -79,16 +79,16 @@ object FrmMain: TFrmMain
     object obterPropertys: TButton
       Left = 6
       Top = 37
-      Width = 91
+      Width = 105
       Height = 25
       Caption = 'Obter propertys'
       TabOrder = 3
       OnClick = obterFieldsClick
     end
     object buscarPorPropertys: TButton
-      Left = 103
+      Left = 117
       Top = 37
-      Width = 91
+      Width = 105
       Height = 25
       Caption = 'Buscar propertys'
       TabOrder = 4

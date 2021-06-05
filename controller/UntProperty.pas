@@ -3,16 +3,16 @@ unit UntProperty;
 interface
 
 uses
-  UntTreeView, System.Rtti, UntRttiUtil, UntICampo;
+  UntTreeView, System.Rtti, UntRttiUtil, UntICampo, UntIDadosRtti;
 
 type
-  TProperty = class(TInterfacedObject, ICampo)
+  TProperty = class(TInterfacedObject, IDadosRtti, ICampo)
   private
     FExibirResultado: TExibirResultadoTreeView;
   public
     constructor Create(AExibirResultado: TExibirResultadoTreeView); reintroduce;
 
-    procedure obter(AExibirCamposHerdados: Boolean);
+    procedure listar(AExibirCamposHerdados: Boolean);
     procedure buscar(AExibirCamposHerdados: Boolean; ACampo: String);
   end;
 
@@ -59,7 +59,7 @@ begin
   end;
 end;
 
-procedure TProperty.obter(AExibirCamposHerdados: Boolean);
+procedure TProperty.listar(AExibirCamposHerdados: Boolean);
 var
   Exemplo: TClasseExemplo;
   Contexto: TRttiContext;

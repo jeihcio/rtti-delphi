@@ -10,7 +10,8 @@ uses
   UntProperty in 'controller\UntProperty.pas',
   UntClasseExampleHeranca in 'model\UntClasseExampleHeranca.pas',
   UntRttiUtil in 'controller\UntRttiUtil.pas',
-  UntICampo in 'controller\interface\UntICampo.pas';
+  UntICampo in 'controller\interface\UntICampo.pas',
+  UntIDadosRtti in 'controller\interface\UntIDadosRtti.pas';
 
 {$R *.res}
 
