@@ -7,9 +7,9 @@ type
   private
     Fnome: String;
     FIdade: Integer;
-    FPrivado: String;
+    FCampoPrivado: String;
     FIsHomem: Boolean;
-    property privado: String read FPrivado write FPrivado;
+    property privado: String read FCampoPrivado write FCampoPrivado;
     procedure Privada();
   public
     FCampoPublico: String;

@@ -116,16 +116,17 @@ object FrmMain: TFrmMain
       ExplicitHeight = 15
     end
   end
-  object MmResultado: TMemo
+  object Resultado: TTreeView
     Left = 0
     Top = 105
     Width = 450
     Height = 406
     Align = alClient
-    ReadOnly = True
-    ScrollBars = ssVertical
+    Indent = 19
     TabOrder = 1
-    ExplicitWidth = 457
-    ExplicitHeight = 246
+    ExplicitLeft = 168
+    ExplicitTop = 240
+    ExplicitWidth = 121
+    ExplicitHeight = 97
   end
 end
