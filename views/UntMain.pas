@@ -8,6 +8,7 @@ uses
   UntMainController, Vcl.ComCtrls;
 
 type
+  TEvento = (obterFields);
   TFrmMain = class(TForm)
     GridPanel1: TGridPanel;
     BtnFields: TButton;
@@ -15,11 +16,12 @@ type
     Button3: TButton;
     Button4: TButton;
     Resultado: TTreeView;
-    procedure BtnFieldsClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure BtnFieldsClick(Sender: TObject);
   private
     FController: TMainController;
+    procedure acionarEvento(AEvento: TEvento);
   end;
 
 var
@@ -34,16 +36,25 @@ begin
    FController := TMainController.Create(Resultado);
 end;
 
+procedure TFrmMain.BtnFieldsClick(Sender: TObject);
+begin
+   acionarEvento(obterFields);
+end;
+
 procedure TFrmMain.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
    FController.Free;
 end;
 
-procedure TFrmMain.BtnFieldsClick(Sender: TObject);
+procedure TFrmMain.acionarEvento(AEvento: TEvento);
 begin
-    resultado.Items.Clear;
-    FController.obterFields();
-    Resultado.FullExpand;
+   resultado.Items.Clear;
+
+   Case AEvento Of
+      obterFields: FController.obterFields();
+   End;
+
+   Resultado.FullExpand;
 end;
 
 end.
