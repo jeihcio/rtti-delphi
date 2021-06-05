@@ -4,7 +4,7 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls,
+  Vcl.Controls, Vcl.Forms, Vcl.ExtCtrls, Vcl.StdCtrls,
   UntMainController, Vcl.ComCtrls;
 
 type
@@ -31,7 +31,7 @@ var
 implementation
 
 uses
-  System.TypInfo;
+  System.TypInfo, Dialogs;
 
 {$R *.dfm}
 
@@ -62,11 +62,19 @@ begin
 end;
 
 procedure TFrmMain.acionarEvento(AEvento: TEvento);
+var
+  entradaDado: String;
 begin
    Resultado.Items.Clear;
 
    Case AEvento Of
       TEvento.obterFields: FController.obterFields();
+
+      TEvento.buscarPorField:
+        Begin
+           entradaDado := Dialogs.InputBox('Buscar', 'Campo', String.Empty);
+           FController.buscarPorField(entradaDado);
+        End;
    End;
 
    Resultado.FullExpand;
