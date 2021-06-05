@@ -17,7 +17,7 @@ type
 implementation
 
 uses
-  UntClasseExample, System.Rtti, UntRttiUtil, System.TypInfo;
+  UntClasseExample, System.Rtti, UntRttiUtil, System.TypInfo, System.Classes;
 
 { TMethods }
 
@@ -33,8 +33,11 @@ var
   Tipo: TRttiType;
   Metodo: TRttiMethod;
   Parametro: TRttiParameter;
+  Parametros: TArray<TRttiParameter>;
+  listaParametros: TStringList;
 begin
   Exemplo := TClasseExemplo.Create;
+  listaParametros := TStringList.Create;
   try
     Tipo := Contexto.GetType(Exemplo.ClassInfo);
 
@@ -43,13 +46,32 @@ begin
       begin
         If isPularPropriedadeHerdada(AExibirCamposHerdados, Metodo, Tipo.Name) Then Continue;
 
-        FExibirResultado.addNaTreeView(Metodo.Visibility, Metodo.Name, [
-          'Tipo: ' + GetEnumName(TypeInfo(TMethodKind), Integer(Metodo.MethodKind)),
-          'Visibilidade: ' + GetEnumName(TypeInfo(TMemberVisibility), Integer(Metodo.Visibility))
-        ]);
+        Parametros := Metodo.GetParameters;
+        for Parametro in Parametros do
+          listaParametros.Add(Parametro.ToString);
+
+        if Length(Metodo.GetParameters) <= 0 then
+          Begin
+            FExibirResultado.addNaTreeView(Metodo.Visibility, Metodo.Name, [
+              'Tipo: ' + GetEnumName(TypeInfo(TMethodKind), Integer(Metodo.MethodKind)),
+              'Visibilidade: ' + GetEnumName(TypeInfo(TMemberVisibility), Integer(Metodo.Visibility)),
+              'Parametros: Nenhum'
+            ]);
+          End
+        Else
+          Begin
+            FExibirResultado.addNaMethodsTreeView(Metodo.Visibility, Metodo.Name, [
+              'Tipo: ' + GetEnumName(TypeInfo(TMethodKind), Integer(Metodo.MethodKind)),
+              'Visibilidade: ' + GetEnumName(TypeInfo(TMemberVisibility), Integer(Metodo.Visibility)),
+              'Parametros'
+            ], listaParametros.ToStringArray);
+
+            listaParametros.Clear;
+          End;
       end;
   finally
     Exemplo.Free;
+    listaParametros.Free;
   end;
 end;
 

@@ -14,12 +14,14 @@ type
     FNodeProtected,
     FNodePublic,
     FNodePublicada: TTreeNode;
+    FUltimoNo: TTreeNode;
     function  addNodePorVisibilidade(ANomeNode: String; AVisibilidade: TMemberVisibility): TTreeNode;
   public
     Constructor Create(ATreeView: TTreeView); reintroduce;
 
     procedure addNaTreeView(ANodePrincipal: String); overload;
     procedure addNaTreeView(AVisibilidade: TMemberVisibility; ANodeSecundario: String; AListaFilhos: TArray<String>); overload;
+    procedure addNaMethodsTreeView(AVisibilidade: TMemberVisibility; ANodeSecundario: String; AListaFilhos, AListaParametros: TArray<String>);
   end;
 
 implementation
@@ -31,15 +33,13 @@ begin
   FTreeView := ATreeView;
 end;
 
-procedure TExibirResultadoTreeView.addNaTreeView(AVisibilidade: TMemberVisibility;
-  ANodeSecundario: String; AListaFilhos: TArray<String>);
-var
-  index: Integer;
-  node: TTreeNode;
+procedure TExibirResultadoTreeView.addNaTreeView(ANodePrincipal: String);
 begin
-   node := addNodePorVisibilidade(ANodeSecundario, AVisibilidade);
-   For index := 0 To Length(AListaFilhos) - 1 Do
-     FTreeView.Items.AddChild(node, AListaFilhos[index]) ;
+   FNodePrincipal := FTreeView.Items.Add(nil, ANodePrincipal);
+   FNodePrivate   := FTreeView.Items.AddChild(FNodePrincipal, 'Private');
+   FNodePublic    := FTreeView.Items.AddChild(FNodePrincipal, 'Public');
+   FNodeProtected := FTreeView.Items.AddChild(FNodePrincipal, 'Protected');
+   FNodePublicada := FTreeView.Items.AddChild(FNodePrincipal, 'Published');
 end;
 
 function TExibirResultadoTreeView.addNodePorVisibilidade(ANomeNode: String;
@@ -56,13 +56,27 @@ begin
    End;
 end;
 
-procedure TExibirResultadoTreeView.addNaTreeView(ANodePrincipal: String);
+procedure TExibirResultadoTreeView.addNaTreeView(AVisibilidade: TMemberVisibility;
+  ANodeSecundario: String; AListaFilhos: TArray<String>);
+var
+  index: Integer;
+  node: TTreeNode;
 begin
-   FNodePrincipal := FTreeView.Items.Add(nil, ANodePrincipal);
-   FNodePrivate   := FTreeView.Items.AddChild(FNodePrincipal, 'Private');
-   FNodePublic    := FTreeView.Items.AddChild(FNodePrincipal, 'Public');
-   FNodeProtected := FTreeView.Items.AddChild(FNodePrincipal, 'Protected');
-   FNodePublicada := FTreeView.Items.AddChild(FNodePrincipal, 'Published');
+   node := addNodePorVisibilidade(ANodeSecundario, AVisibilidade);
+   For index := 0 To Length(AListaFilhos) - 1 Do
+     FUltimoNo := FTreeView.Items.AddChild(node, AListaFilhos[index]) ;
+end;
+
+procedure TExibirResultadoTreeView.addNaMethodsTreeView(
+  AVisibilidade: TMemberVisibility; ANodeSecundario: String; AListaFilhos,
+  AListaParametros: TArray<String>);
+var
+  index: Integer;
+begin
+   addNaTreeView(AVisibilidade, ANodeSecundario, AListaFilhos);
+
+   For index := 0 To Length(AListaParametros) - 1 Do
+     FTreeView.Items.AddChild(FUltimoNo, AListaParametros[index]) ;
 end;
 
 end.

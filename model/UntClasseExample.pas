@@ -24,6 +24,7 @@ type
     procedure fazAlgo();
     function fazOutroAlgo(): String;
     function fazOutroAlgo2(ATeste: String): String;
+    function fazOutroAlgo3(ATeste, ATeste2: String; AInteiro: Integer): String;
   protected
     FCampoProtegido: String;
     property CampoProtegido: String read FCampoProtegido write FCampoProtegido;
@@ -51,6 +52,12 @@ begin
 end;
 
 function TClasseExemplo.fazOutroAlgo2(ATeste: String): String;
+begin
+
+end;
+
+function TClasseExemplo.fazOutroAlgo3(ATeste, ATeste2: String;
+  AInteiro: Integer): String;
 begin
 
 end;
