@@ -9,6 +9,7 @@ type
   TField = class(TInterfacedObject, IDadosRtti, ICampo)
   private
     FExibirResultado: TExibirResultadoTreeView;
+    procedure addNaTreeView(AExibirCamposHerdados: Boolean; Exemplo: TObject; Field: TRttiField; Tipo: TRttiType);
   public
     constructor Create(AExibirResultado: TExibirResultadoTreeView); reintroduce;
 
@@ -28,6 +29,17 @@ begin
   FExibirResultado := AExibirResultado;
 end;
 
+procedure TField.addNaTreeView(AExibirCamposHerdados: Boolean; Exemplo: TObject;
+  Field: TRttiField; Tipo: TRttiType);
+begin
+  If isPularPropriedadeHerdada(AExibirCamposHerdados, Field, Tipo.Name) Then Exit;
+  FExibirResultado.addNaTreeView(Field.Visibility, Field.Name, [
+    'Tipo: ' + Field.FieldType.ToString,
+    'Visibilidade: ' + GetEnumName(TypeInfo(TMemberVisibility), Integer(Field.Visibility)),
+    'Valor: ' + Field.GetValue(Exemplo).ToString
+  ]);
+end;
+
 procedure TField.listar(AExibirCamposHerdados: Boolean);
 var
   Exemplo: TClasseExemplo;
@@ -44,14 +56,11 @@ begin
 
     FExibirResultado.addNaTreeView(Tipo.Name);
     for Field in Tipo.GetFields do
-      begin
-        If isPularPropriedadeHerdada(AExibirCamposHerdados, Field, Tipo.Name) Then Continue;
-        FExibirResultado.addNaTreeView(Field.Visibility, Field.Name, [
-          'Tipo: ' + Field.FieldType.ToString,
-          'Visibilidade: ' + GetEnumName(TypeInfo(TMemberVisibility), Integer(Field.Visibility)),
-          'Valor: ' + Field.GetValue(Exemplo).ToString
-        ]);
-      end;
+      addNaTreeView(
+        AExibirCamposHerdados,
+        Exemplo,
+        Field,
+        Tipo);
   finally
     Exemplo.Free;
   end;
@@ -71,14 +80,11 @@ begin
 
     Field := Tipo.GetField(ACampo);
     if Assigned(Field) then
-      begin
-        If isPularPropriedadeHerdada(AExibirCamposHerdados, Field, Tipo.Name) Then exit;
-        FExibirResultado.addNaTreeView(Field.Visibility, Field.Name, [
-          'Tipo: ' + Field.FieldType.ToString,
-          'Visibilidade: ' + GetEnumName(TypeInfo(TMemberVisibility), Integer(Field.Visibility)),
-          'Valor: ' + Field.GetValue(Exemplo).ToString
-        ]);
-      end;
+      addNaTreeView(
+        AExibirCamposHerdados,
+        Exemplo,
+        Field,
+        Tipo);
   finally
     Exemplo.Free;
   end;

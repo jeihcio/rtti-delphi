@@ -9,6 +9,7 @@ type
   TProperty = class(TInterfacedObject, IDadosRtti, ICampo)
   private
     FExibirResultado: TExibirResultadoTreeView;
+    procedure addNaTreeView(AExibirCamposHerdados: Boolean; Exemplo: TObject; Propriedade: TRttiProperty; Tipo: TRttiType);
   public
     constructor Create(AExibirResultado: TExibirResultadoTreeView); reintroduce;
 
@@ -28,13 +29,28 @@ begin
   FExibirResultado := AExibirResultado;
 end;
 
+procedure TProperty.addNaTreeView(AExibirCamposHerdados: Boolean;
+  Exemplo: TObject; Propriedade: TRttiProperty; Tipo: TRttiType);
+var
+  PropriedadeIndexada: TRttiInstanceProperty;
+begin
+  If isPularPropriedadeHerdada(AExibirCamposHerdados, Propriedade, Tipo.Name) Then exit;
+
+  PropriedadeIndexada := TRttiInstanceProperty(Propriedade);
+  FExibirResultado.addNaTreeView(Propriedade.Visibility, Propriedade.Name, [
+    'Tipo: ' + Propriedade.PropertyType.ToString,
+    'Visibilidade: ' + GetEnumName(TypeInfo(TMemberVisibility), Integer(Propriedade.Visibility)),
+    'Valor: ' + Propriedade.GetValue(Exemplo).ToString,
+    'Índice: ' + IntToStr(PropriedadeIndexada.Index)
+  ]);
+end;
+
 procedure TProperty.buscar(AExibirCamposHerdados: Boolean; ACampo: String);
 var
   Exemplo: TClasseExemplo;
   Contexto: TRttiContext;
   Tipo: TRttiType;
   Propriedade: TRttiProperty;
-  PropriedadeIndexada: TRttiInstanceProperty;
 begin
   Exemplo := TClasseExemplo.Create;
   try
@@ -43,17 +59,11 @@ begin
 
     Propriedade := Tipo.GetProperty(ACampo);
     if Assigned(Propriedade) then
-      begin
-        If isPularPropriedadeHerdada(AExibirCamposHerdados, Propriedade, Tipo.Name) Then exit;
-
-        PropriedadeIndexada := TRttiInstanceProperty(Propriedade);
-        FExibirResultado.addNaTreeView(Propriedade.Visibility, Propriedade.Name, [
-          'Tipo: ' + Propriedade.PropertyType.ToString,
-          'Visibilidade: ' + GetEnumName(TypeInfo(TMemberVisibility), Integer(Propriedade.Visibility)),
-          'Valor: ' + Propriedade.GetValue(Exemplo).ToString,
-          'Índice: ' + IntToStr(PropriedadeIndexada.Index)
-        ]);
-      end;
+      addNaTreeView(
+        AExibirCamposHerdados,
+        Exemplo,
+        Propriedade,
+        Tipo);
   finally
     Exemplo.Free;
   end;
@@ -73,17 +83,11 @@ begin
 
     FExibirResultado.addNaTreeView(Tipo.Name);
     for Propriedade in Tipo.GetProperties do
-      begin
-        If isPularPropriedadeHerdada(AExibirCamposHerdados, Propriedade, Tipo.Name) Then Continue;
-
-        PropriedadeIndexada := TRttiInstanceProperty(Propriedade);
-        FExibirResultado.addNaTreeView(Propriedade.Visibility, Propriedade.Name, [
-          'Tipo: ' + Propriedade.PropertyType.ToString,
-          'Visibilidade: ' + GetEnumName(TypeInfo(TMemberVisibility), Integer(Propriedade.Visibility)),
-          'Valor: ' + Propriedade.GetValue(Exemplo).ToString,
-          'Índice: ' + IntToStr(PropriedadeIndexada.Index)
-        ]);
-      end;
+      addNaTreeView(
+        AExibirCamposHerdados,
+        Exemplo,
+        Propriedade,
+        Tipo);
   finally
     Exemplo.Free;
   end;
