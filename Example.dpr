@@ -5,7 +5,8 @@ uses
   UntMain in 'views\UntMain.pas' {FrmMain},
   UntClasseExample in 'model\UntClasseExample.pas',
   UntMainController in 'controller\UntMainController.pas',
-  UntTreeView in 'controller\UntTreeView.pas';
+  UntTreeView in 'controller\UntTreeView.pas',
+  UntFields in 'controller\UntFields.pas';
 
 {$R *.res}
 
