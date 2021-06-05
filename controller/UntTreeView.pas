@@ -14,10 +14,10 @@ type
     FNodeProtected,
     FNodePublic,
     FNodePublicada: TTreeNode;
+    function  addNodePorVisibilidade(ANomeNode: String; AVisibilidade: TMemberVisibility): TTreeNode;
   public
     Constructor Create(ATreeView: TTreeView); reintroduce;
 
-    function  addNodePorVisibilidade(ANomeNode: String; AVisibilidade: TMemberVisibility): TTreeNode;
     procedure addNaTreeView(ANodePrincipal: String); overload;
     procedure addNaTreeView(AVisibilidade: TMemberVisibility; ANodeSecundario: String; AListaFilhos: TArray<String>); overload;
   end;
