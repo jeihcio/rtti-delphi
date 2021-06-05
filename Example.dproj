@@ -89,7 +89,6 @@
         <DCCReference Include="controller\UntProperty.pas"/>
         <DCCReference Include="model\UntClasseExampleHeranca.pas"/>
         <DCCReference Include="controller\UntRttiUtil.pas"/>
-        <DCCReference Include="controller\interface\UntICampo.pas"/>
         <DCCReference Include="controller\interface\UntIDadosRtti.pas"/>
         <DCCReference Include="controller\UntMethod.pas"/>
         <BuildConfiguration Include="Release">

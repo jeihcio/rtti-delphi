@@ -13,6 +13,7 @@ type
   public
     constructor Create(AExibirResultado: TExibirResultadoTreeView); reintroduce;
     procedure listar(AExibirCamposHerdados: Boolean);
+    procedure buscar(AExibirCamposHerdados: Boolean; ACampo: String);
   end;
 
 implementation
@@ -78,6 +79,30 @@ begin
 
     FExibirResultado.addNaTreeView(Tipo.Name);
     for Metodo in Tipo.GetMethods do
+      addNaTreeView(
+        AExibirCamposHerdados,
+        Exemplo,
+        Metodo,
+        Tipo);
+  finally
+    Exemplo.Free;
+  end;
+end;
+
+procedure TMethod.buscar(AExibirCamposHerdados: Boolean; ACampo: String);
+var
+  Exemplo: TClasseExemplo;
+  Contexto: TRttiContext;
+  Tipo: TRttiType;
+  Metodo: TRttiMethod;
+begin
+  Exemplo := TClasseExemplo.Create;
+  try
+    Tipo := Contexto.GetType(Exemplo.ClassInfo);
+    FExibirResultado.addNaTreeView(Tipo.Name);
+
+    Metodo := Tipo.GetMethod(ACampo);
+    if Assigned(Metodo) then
       addNaTreeView(
         AExibirCamposHerdados,
         Exemplo,

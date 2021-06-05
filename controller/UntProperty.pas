@@ -3,10 +3,10 @@ unit UntProperty;
 interface
 
 uses
-  UntTreeView, System.Rtti, UntRttiUtil, UntICampo, UntIDadosRtti;
+  UntTreeView, System.Rtti, UntRttiUtil, UntIDadosRtti;
 
 type
-  TProperty = class(TInterfacedObject, IDadosRtti, ICampo)
+  TProperty = class(TInterfacedObject, IDadosRtti)
   private
     FExibirResultado: TExibirResultadoTreeView;
     procedure addNaTreeView(AExibirCamposHerdados: Boolean; Exemplo: TObject; Propriedade: TRttiProperty; Tipo: TRttiType);

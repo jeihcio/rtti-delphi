@@ -3,10 +3,10 @@ unit UntFields;
 interface
 
 uses
-  UntTreeView, System.Rtti, UntRttiUtil, UntICampo, UntIDadosRtti;
+  UntTreeView, System.Rtti, UntRttiUtil, UntIDadosRtti;
 
 type
-  TField = class(TInterfacedObject, IDadosRtti, ICampo)
+  TField = class(TInterfacedObject, IDadosRtti)
   private
     FExibirResultado: TExibirResultadoTreeView;
     procedure addNaTreeView(AExibirCamposHerdados: Boolean; Exemplo: TObject; Field: TRttiField; Tipo: TRttiType);

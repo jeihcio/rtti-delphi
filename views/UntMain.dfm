@@ -32,7 +32,6 @@ object FrmMain: TFrmMain
     PopupMenu = Menu
     ReadOnly = True
     TabOrder = 0
-    ExplicitHeight = 193
   end
   object Panel1: TPanel
     Left = 0
@@ -54,9 +53,6 @@ object FrmMain: TFrmMain
       Checked = True
       State = cbChecked
       TabOrder = 0
-      ExplicitLeft = 5
-      ExplicitTop = 114
-      ExplicitWidth = 436
     end
     object listarFields: TButton
       Left = 6
@@ -101,6 +97,15 @@ object FrmMain: TFrmMain
       Height = 25
       Caption = 'Listar m'#233'todos'
       TabOrder = 5
+      OnClick = listarFieldsClick
+    end
+    object buscarMethods: TButton
+      Left = 228
+      Top = 37
+      Width = 105
+      Height = 25
+      Caption = 'Buscar m'#233'todo'
+      TabOrder = 6
       OnClick = listarFieldsClick
     end
   end

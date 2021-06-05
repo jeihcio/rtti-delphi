@@ -11,10 +11,12 @@ uses
 type
   TEvento = (
     listarFields,
-    buscarPorField,
     listarPropertys,
+    listarMethods,
+
     buscarPorPropertys,
-    listarMethods
+    buscarPorField,
+    buscarMethods
   );
 
   TFrmMain = class(TForm)
@@ -30,6 +32,7 @@ type
     listarPropertys: TButton;
     buscarPorPropertys: TButton;
     listarMethods: TButton;
+    buscarMethods: TButton;
     procedure FormCreate(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure listarFieldsClick(Sender: TObject);
@@ -105,13 +108,15 @@ begin
       TEvento.listarMethods: FController.listarMethods(ExibirRecursosHerdados.Checked);
 
       TEvento.buscarPorField,
-      TEvento.buscarPorPropertys:
+      TEvento.buscarPorPropertys,
+      TEvento.buscarMethods:
         Begin
            entradaDado := Dialogs.InputBox('Buscar', 'Campo', String.Empty);
 
            Case AEvento Of
              TEvento.buscarPorField: FController.buscarPorField(ExibirRecursosHerdados.Checked, entradaDado);
              TEvento.buscarPorPropertys: FController.buscarPorPropertys(ExibirRecursosHerdados.Checked, entradaDado);
+             TEvento.buscarMethods: FController.buscarMethods(ExibirRecursosHerdados.Checked, entradaDado);
            End;
         End;
    End;
