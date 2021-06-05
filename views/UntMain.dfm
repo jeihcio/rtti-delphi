@@ -3,7 +3,7 @@ object FrmMain: TFrmMain
   Top = 0
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle
-  Caption = 'RTTI'
+  Caption = 'Run-time type information'
   ClientHeight = 511
   ClientWidth = 450
   Color = clBtnFace
