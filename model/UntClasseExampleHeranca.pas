@@ -11,7 +11,8 @@ type
     property propriedadeDeHeranca: String read FPropriedadeDeHeranca write FPropriedadeDeHeranca;
     property campoPublicoHeranca: String read FCampoPublicoHeranca write FCampoPublicoHeranca;
 
-    procedure procedurePublicHeranca();
+    procedure procedurePublicHeranca(); overload;
+    procedure procedurePublicHeranca(ATeste: String); overload;
     function funcaoPublicHeranca(): String;
   protected
     FCampoProtegidoHeranca: String;
@@ -50,6 +51,11 @@ begin
 end;
 
 procedure TClasseExampleHeranca.procedurePublicadaHeranca;
+begin
+
+end;
+
+procedure TClasseExampleHeranca.procedurePublicHeranca(ATeste: String);
 begin
 
 end;

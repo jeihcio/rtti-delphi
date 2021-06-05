@@ -23,6 +23,7 @@ type
 
     procedure fazAlgo();
     function fazOutroAlgo(): String;
+    function fazOutroAlgo2(ATeste: String): String;
   protected
     FCampoProtegido: String;
     property CampoProtegido: String read FCampoProtegido write FCampoProtegido;
@@ -47,6 +48,11 @@ end;
 function TClasseExemplo.fazOutroAlgo: String;
 begin
   Result := 'Teste';
+end;
+
+function TClasseExemplo.fazOutroAlgo2(ATeste: String): String;
+begin
+
 end;
 
 function TClasseExemplo.funcaoProtegida: String;
