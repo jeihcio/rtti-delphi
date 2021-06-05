@@ -9,18 +9,17 @@ type
   TMainController = class
   private
     FExibirResultado: TExibirResultadoTreeView;
-    FExibirCamposHerdados: Boolean;
     FField: TField;
     FProperty: TProperty;
   public
-    Constructor Create(ATreeView: TTreeView; AExibirCamposHerdados: Boolean); reintroduce;
+    Constructor Create(ATreeView: TTreeView); reintroduce;
     destructor Destroy(); override;
 
-    procedure obterFields();
-    procedure buscarPorField(ACampo: String);
+    procedure obterFields(AExibirCamposHerdados: Boolean);
+    procedure buscarPorField(AExibirCamposHerdados: Boolean; ACampo: String);
 
-    procedure obterPropertys();
-    procedure buscarPorPropertys(ACampo: String);
+    procedure obterPropertys(AExibirCamposHerdados: Boolean);
+    procedure buscarPorPropertys(AExibirCamposHerdados: Boolean; ACampo: String);
   end;
 
 implementation
@@ -30,14 +29,12 @@ uses
 
 { TMainController }
 
-constructor TMainController.Create(ATreeView: TTreeView;
-  AExibirCamposHerdados: Boolean);
+constructor TMainController.Create(ATreeView: TTreeView);
 begin
-  FExibirCamposHerdados := AExibirCamposHerdados;
   FExibirResultado := TExibirResultadoTreeView.Create(ATreeView);
 
-  FField := TField.Create(FExibirResultado, AExibirCamposHerdados);
-  FProperty := TProperty.Create(FExibirResultado, AExibirCamposHerdados);
+  FField := TField.Create(FExibirResultado);
+  FProperty := TProperty.Create(FExibirResultado);
 end;
 
 destructor TMainController.Destroy;
@@ -48,24 +45,24 @@ begin
   inherited;
 end;
 
-procedure TMainController.obterFields;
+procedure TMainController.obterFields(AExibirCamposHerdados: Boolean);
 begin
-  FField.obterFields;
+  FField.obterFields(AExibirCamposHerdados);
 end;
 
-procedure TMainController.buscarPorField(ACampo: String);
+procedure TMainController.buscarPorField(AExibirCamposHerdados: Boolean; ACampo: String);
 begin
-  FField.buscarPorField(ACampo);
+  FField.buscarPorField(AExibirCamposHerdados, ACampo);
 end;
 
-procedure TMainController.obterPropertys;
+procedure TMainController.obterPropertys(AExibirCamposHerdados: Boolean);
 begin
-  FProperty.obterPropertys;
+  FProperty.obterPropertys(AExibirCamposHerdados);
 end;
 
-procedure TMainController.buscarPorPropertys(ACampo: String);
+procedure TMainController.buscarPorPropertys(AExibirCamposHerdados: Boolean; ACampo: String);
 begin
-  FProperty.buscarPorPropertys(ACampo);
+  FProperty.buscarPorPropertys(AExibirCamposHerdados, ACampo);
 end;
 
 end.

@@ -7,7 +7,8 @@ uses
   UntMainController in 'controller\UntMainController.pas',
   UntTreeView in 'controller\UntTreeView.pas',
   UntFields in 'controller\UntFields.pas',
-  UntProperty in 'controller\UntProperty.pas';
+  UntProperty in 'controller\UntProperty.pas',
+  UntClasseExampleHeranca in 'model\UntClasseExampleHeranca.pas';
 
 {$R *.res}
 

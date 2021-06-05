@@ -87,6 +87,7 @@
         <DCCReference Include="controller\UntTreeView.pas"/>
         <DCCReference Include="controller\UntFields.pas"/>
         <DCCReference Include="controller\UntProperty.pas"/>
+        <DCCReference Include="model\UntClasseExampleHeranca.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

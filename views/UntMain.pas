@@ -49,7 +49,7 @@ uses
 
 procedure TFrmMain.FormCreate(Sender: TObject);
 begin
-   FController := TMainController.Create(Resultado, ExibirRecursosHerdados.Checked);
+   FController := TMainController.Create(Resultado);
 end;
 
 procedure TFrmMain.LimpartudoClick(Sender: TObject);
@@ -95,15 +95,15 @@ begin
    Resultado.Items.Clear;
 
    Case AEvento Of
-      TEvento.obterFields: FController.obterFields();
+      TEvento.obterFields: FController.obterFields(ExibirRecursosHerdados.Checked);
 
       TEvento.buscarPorField:
         Begin
            entradaDado := Dialogs.InputBox('Buscar', 'Campo', String.Empty);
-           FController.buscarPorField(entradaDado);
+           FController.buscarPorField(ExibirRecursosHerdados.Checked, entradaDado);
         End;
 
-      TEvento.obterPropertys: FController.obterPropertys();
+      TEvento.obterPropertys: FController.obterPropertys(ExibirRecursosHerdados.Checked);
    End;
 
    Resultado.FullExpand;

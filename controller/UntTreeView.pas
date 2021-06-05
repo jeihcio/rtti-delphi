@@ -60,8 +60,8 @@ procedure TExibirResultadoTreeView.addNaTreeView(ANodePrincipal: String);
 begin
    FNodePrincipal := FTreeView.Items.Add(nil, ANodePrincipal);
    FNodePrivate   := FTreeView.Items.AddChild(FNodePrincipal, 'Private');
-   FNodeProtected := FTreeView.Items.AddChild(FNodePrincipal, 'Protected');
    FNodePublic    := FTreeView.Items.AddChild(FNodePrincipal, 'Public');
+   FNodeProtected := FTreeView.Items.AddChild(FNodePrincipal, 'Protected');
    FNodePublicada := FTreeView.Items.AddChild(FNodePrincipal, 'Published');
 end;
 

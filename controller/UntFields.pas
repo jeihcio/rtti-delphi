@@ -9,14 +9,13 @@ type
   TField = class
   private
     FExibirResultado: TExibirResultadoTreeView;
-    FExibirCamposHerdados: Boolean;
-    function isPularPropriedadeHerdada(APropriedade: TRttiMember; ANomePai: String): Boolean;
+    function isPularPropriedadeHerdada(AExibirCamposHerdados: Boolean;
+      APropriedade: TRttiMember; ANomePai: String): Boolean;
   public
-    constructor Create(AExibirResultado: TExibirResultadoTreeView;
-      AExibirCamposHerdados: Boolean); reintroduce;
+    constructor Create(AExibirResultado: TExibirResultadoTreeView); reintroduce;
 
-    procedure obterFields();
-    procedure buscarPorField(ACampo: String);
+    procedure obterFields(AExibirCamposHerdados: Boolean);
+    procedure buscarPorField(AExibirCamposHerdados: Boolean; ACampo: String);
   end;
 
 implementation
@@ -26,25 +25,25 @@ uses
 
 { TFields }
 
-constructor TField.Create(AExibirResultado: TExibirResultadoTreeView;
-  AExibirCamposHerdados: Boolean);
+constructor TField.Create(AExibirResultado: TExibirResultadoTreeView);
 begin
   FExibirResultado := AExibirResultado;
 end;
 
-function TField.isPularPropriedadeHerdada(APropriedade: TRttiMember; ANomePai: String): Boolean;
+function TField.isPularPropriedadeHerdada(AExibirCamposHerdados: Boolean;
+  APropriedade: TRttiMember; ANomePai: String): Boolean;
 var
   cNomeClassePai: String;
 begin
    Result := False;
-   If Not FExibirCamposHerdados Then
+   If Not AExibirCamposHerdados Then
       Begin
          cNomeClassePai := TRttiInstanceType(APropriedade.Parent).MetaclassType.ClassName;
          Result := (cNomeClassePai <> ANomePai);
       End;
 end;
 
-procedure TField.obterFields;
+procedure TField.obterFields(AExibirCamposHerdados: Boolean);
 var
   Exemplo: TClasseExemplo;
   Contexto: TRttiContext;
@@ -54,12 +53,14 @@ begin
   Exemplo := TClasseExemplo.Create;
   try
     Exemplo.nome := 'Jeihcio Francis';
+    Exemplo.propriedadeDeHeranca := 'Teste de herança';
+
     Tipo := Contexto.GetType(Exemplo.ClassInfo);
 
     FExibirResultado.addNaTreeView(Tipo.Name);
     for Field in Tipo.GetFields do
       begin
-        If isPularPropriedadeHerdada(Field, Tipo.Name) Then Continue;
+        If isPularPropriedadeHerdada(AExibirCamposHerdados, Field, Tipo.Name) Then Continue;
         FExibirResultado.addNaTreeView(Field.Visibility, Field.Name, [
           'Tipo: ' + Field.FieldType.ToString,
           'Visibilidade: ' + GetEnumName(TypeInfo(TMemberVisibility), Integer(Field.Visibility)),
@@ -71,7 +72,7 @@ begin
   end;
 end;
 
-procedure TField.buscarPorField(ACampo: String);
+procedure TField.buscarPorField(AExibirCamposHerdados: Boolean; ACampo: String);
 var
   Exemplo: TClasseExemplo;
   Contexto: TRttiContext;
@@ -86,7 +87,7 @@ begin
     Field := Tipo.GetField(ACampo);
     if Assigned(Field) then
       begin
-        If isPularPropriedadeHerdada(Field, Tipo.Name) Then exit;
+        If isPularPropriedadeHerdada(AExibirCamposHerdados, Field, Tipo.Name) Then exit;
         FExibirResultado.addNaTreeView(Field.Visibility, Field.Name, [
           'Tipo: ' + Field.FieldType.ToString,
           'Visibilidade: ' + GetEnumName(TypeInfo(TMemberVisibility), Integer(Field.Visibility)),

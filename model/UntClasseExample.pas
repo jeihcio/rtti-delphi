@@ -2,8 +2,11 @@ unit UntClasseExample;
 
 interface
 
+uses
+  UntClasseExampleHeranca;
+
 type
-  TClasseExemplo = class
+  TClasseExemplo = class(TClasseExampleHeranca)
   private
     Fnome: String;
     FIdade: Integer;

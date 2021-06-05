@@ -9,14 +9,12 @@ type
   TProperty = class
   private
     FExibirResultado: TExibirResultadoTreeView;
-    FExibirCamposHerdados: Boolean;
-    function isPularPropriedadeHerdada(APropriedade: TRttiMember; ANomePai: String): Boolean;
+    function isPularPropriedadeHerdada(AExibirCamposHerdados: Boolean; APropriedade: TRttiMember; ANomePai: String): Boolean;
   public
-    constructor Create(AExibirResultado: TExibirResultadoTreeView;
-      AExibirCamposHerdados: Boolean); reintroduce;
+    constructor Create(AExibirResultado: TExibirResultadoTreeView); reintroduce;
 
-    procedure obterPropertys();
-    procedure buscarPorPropertys(ACampo: String);
+    procedure obterPropertys(AExibirCamposHerdados: Boolean);
+    procedure buscarPorPropertys(AExibirCamposHerdados: Boolean; ACampo: String);
   end;
 
 implementation
@@ -26,30 +24,29 @@ uses
 
 { TProperty }
 
-constructor TProperty.Create(AExibirResultado: TExibirResultadoTreeView;
-  AExibirCamposHerdados: Boolean);
+constructor TProperty.Create(AExibirResultado: TExibirResultadoTreeView);
 begin
   FExibirResultado := AExibirResultado;
 end;
 
-function TProperty.isPularPropriedadeHerdada(APropriedade: TRttiMember;
+function TProperty.isPularPropriedadeHerdada(AExibirCamposHerdados: Boolean; APropriedade: TRttiMember;
   ANomePai: String): Boolean;
 var
   cNomeClassePai: String;
 begin
    Result := False;
-   If Not FExibirCamposHerdados Then
+   If Not AExibirCamposHerdados Then
       Begin
          cNomeClassePai := TRttiInstanceType(APropriedade.Parent).MetaclassType.ClassName;
          Result := (cNomeClassePai <> ANomePai);
       End;
 end;
 
-procedure TProperty.buscarPorPropertys(ACampo: String);
+procedure TProperty.buscarPorPropertys(AExibirCamposHerdados: Boolean; ACampo: String);
 begin
 end;
 
-procedure TProperty.obterPropertys;
+procedure TProperty.obterPropertys(AExibirCamposHerdados: Boolean);
 var
   Exemplo: TClasseExemplo;
   Contexto: TRttiContext;
@@ -64,7 +61,7 @@ begin
     FExibirResultado.addNaTreeView(Tipo.Name);
     for Propriedade in Tipo.GetProperties do
       begin
-        If isPularPropriedadeHerdada(Propriedade, Tipo.Name) Then Continue;
+        If isPularPropriedadeHerdada(AExibirCamposHerdados, Propriedade, Tipo.Name) Then Continue;
 
         PropriedadeIndexada := TRttiInstanceProperty(Propriedade);
         FExibirResultado.addNaTreeView(Propriedade.Visibility, Propriedade.Name, [
