@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls,
-  UntClasseExample, System.Rtti, Vcl.ComCtrls;
+  UntClasseExample, System.Rtti, Vcl.ComCtrls, System.TypInfo;
 
 type
   TFrmMain = class(TForm)
@@ -17,8 +17,15 @@ type
     Resultado: TTreeView;
     procedure BtnFieldsClick(Sender: TObject);
   private
-    function addNaTreeView(ANodePrincipal: String): TTreeNode ; overload;
-    function addNaTreeView(ANodePai: TTreeNode; ANodePrincipal: String; AListaFilhos: TArray<String>): TTreeNode; overload;
+    FNodePrincipal,
+    FNodePrivate,
+    FNodeProtected,
+    FNodePublic,
+    FNodePublicada: TTreeNode;
+  private
+    function  addNodePorVisibilidade(ANomeNode: String; AVisibilidade: TMemberVisibility): TTreeNode;
+    procedure addNaTreeView(ANodePrincipal: String); overload;
+    procedure addNaTreeView(AVisibilidade: TMemberVisibility; ANodeSecundario: String; AListaFilhos: TArray<String>); overload;
 
     procedure obterFields();
   public
@@ -29,28 +36,47 @@ var
 
 implementation
 
-uses
-  System.TypInfo;
-
 {$R *.dfm}
 
-function TFrmMain.addNaTreeView(ANodePai: TTreeNode; ANodePrincipal: String;
-  AListaFilhos: TArray<String>): TTreeNode;
+procedure TFrmMain.addNaTreeView(AVisibilidade: TMemberVisibility;
+  ANodeSecundario: String; AListaFilhos: TArray<String>);
 var
   index: Integer;
+  node: TTreeNode;
 begin
-   If Not Assigned(ANodePai) Then
-      Result := Resultado.Items.Add(nil, ANodePrincipal)
-   Else
-      Result := Resultado.Items.AddChild(ANodePai, ANodePrincipal);
-
+   node := addNodePorVisibilidade(ANodeSecundario, AVisibilidade);
    For index := 0 To Length(AListaFilhos) - 1 Do
-      Resultado.Items.AddChild(Result, AListaFilhos[index]) ;
+     Resultado.Items.AddChild(node, AListaFilhos[index]) ;
 end;
 
-function TFrmMain.addNaTreeView(ANodePrincipal: String): TTreeNode;
+function TFrmMain.addNodePorVisibilidade(ANomeNode: String;
+  AVisibilidade: TMemberVisibility): TTreeNode;
 begin
-   Result := addNaTreeView(nil, ANodePrincipal, []);
+   Case AVisibilidade Of
+     mvPrivate:
+       Result := Resultado.Items.AddChild(FNodePrivate, ANomeNode) ;
+
+     mvProtected:
+       Result := Resultado.Items.AddChild(FNodeProtected, ANomeNode) ;
+
+     mvPublic:
+       Result := Resultado.Items.AddChild(FNodePublic, ANomeNode) ;
+
+     mvPublished:
+       Result := Resultado.Items.AddChild(FNodePublicada, ANomeNode) ;
+
+     Else
+       Result := Resultado.Items.AddChild(FNodePrincipal, ANomeNode) ;
+   End;
+end;
+
+procedure TFrmMain.addNaTreeView(ANodePrincipal: String);
+begin
+   FNodePrincipal := Resultado.Items.Add(nil, ANodePrincipal);
+   FNodePrivate   := Resultado.Items.AddChild(FNodePrincipal, 'Private');
+   FNodeProtected := Resultado.Items.AddChild(FNodePrincipal, 'Protected');
+   FNodePublic    := Resultado.Items.AddChild(FNodePrincipal, 'Public');
+   FNodePublicada := Resultado.Items.AddChild(FNodePrincipal, 'Published');
 end;
 
 procedure TFrmMain.BtnFieldsClick(Sender: TObject);
@@ -66,16 +92,15 @@ var
   Contexto: TRttiContext;
   Tipo: TRttiType;
   Field: TRttiField;
-  node: TTreeNode;
 begin
   Exemplo := TClasseExemplo.Create;
   try
     Tipo := Contexto.GetType(Exemplo.ClassInfo);
 
-    node := addNaTreeView(Tipo.Name);
+    addNaTreeView(Tipo.Name);
     for Field in Tipo.GetFields do
       begin
-        addNaTreeView(node, Field.Name, [
+        addNaTreeView(Field.Visibility, Field.Name, [
           'Tipo: ' + Field.FieldType.ToString,
           'Visibilidade: ' + GetEnumName(TypeInfo(TMemberVisibility), Integer(Field.Visibility)),
           'Valor: ' + Field.GetValue(Exemplo).ToString
