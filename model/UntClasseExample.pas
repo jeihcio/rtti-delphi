@@ -19,6 +19,16 @@ type
 
     procedure fazAlgo();
     function fazOutroAlgo(): String;
+  protected
+    FCampoProtegido: String;
+    property CampoProtegido: String read FCampoProtegido write FCampoProtegido;
+    procedure procedureProtegida();
+    function funcaoProtegida(): String;
+  published
+    FCampoPublicado: String;
+    property CampoPublicado: String read FCampoPublicado write FCampoPublicado;
+    procedure procedurePublicada();
+    function funcaoPublicada(): String;
   end;
 
 implementation
@@ -35,8 +45,28 @@ begin
   Result := 'Teste';
 end;
 
+function TClasseExemplo.funcaoProtegida: String;
+begin
+   Result := 'protegida';
+end;
+
+function TClasseExemplo.funcaoPublicada: String;
+begin
+   Result := 'publicada'
+end;
+
 procedure TClasseExemplo.Privada;
 begin
+end;
+
+procedure TClasseExemplo.procedureProtegida;
+begin
+
+end;
+
+procedure TClasseExemplo.procedurePublicada;
+begin
+
 end;
 
 end.
