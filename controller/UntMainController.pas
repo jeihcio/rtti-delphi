@@ -43,6 +43,7 @@ var
 begin
   Exemplo := TClasseExemplo.Create;
   try
+    Exemplo.nome := 'Jeihcio Francis';
     Tipo := Contexto.GetType(Exemplo.ClassInfo);
 
     FExibirResultado.addNaTreeView(Tipo.Name);

@@ -83,6 +83,8 @@
             <Form>FrmMain</Form>
         </DCCReference>
         <DCCReference Include="model\UntClasseExample.pas"/>
+        <DCCReference Include="controller\UntMainController.pas"/>
+        <DCCReference Include="controller\UntTreeView.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
@@ -112,6 +114,12 @@
             </Delphi.Personality>
             <Deployment>
                 <DeployFile LocalName="Win32\Debug\Example.exe" Configuration="Debug" Class="ProjectOutput">
+                    <Platform Name="Win32">
+                        <RemoteName>Example.exe</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="bin\Example.exe" Configuration="Debug" Class="ProjectOutput">
                     <Platform Name="Win32">
                         <RemoteName>Example.exe</RemoteName>
                         <Overwrite>true</Overwrite>
