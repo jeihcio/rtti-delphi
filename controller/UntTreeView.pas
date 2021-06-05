@@ -46,17 +46,10 @@ function TExibirResultadoTreeView.addNodePorVisibilidade(ANomeNode: String;
   AVisibilidade: TMemberVisibility): TTreeNode;
 begin
    Case AVisibilidade Of
-     mvPrivate:
-       Result := FTreeView.Items.AddChild(FNodePrivate, ANomeNode) ;
-
-     mvProtected:
-       Result := FTreeView.Items.AddChild(FNodeProtected, ANomeNode) ;
-
-     mvPublic:
-       Result := FTreeView.Items.AddChild(FNodePublic, ANomeNode) ;
-
-     mvPublished:
-       Result := FTreeView.Items.AddChild(FNodePublicada, ANomeNode) ;
+     mvPrivate:   Result := FTreeView.Items.AddChild(FNodePrivate, ANomeNode) ;
+     mvProtected: Result := FTreeView.Items.AddChild(FNodeProtected, ANomeNode) ;
+     mvPublic:    Result := FTreeView.Items.AddChild(FNodePublic, ANomeNode) ;
+     mvPublished: Result := FTreeView.Items.AddChild(FNodePublicada, ANomeNode) ;
 
      Else
        Result := FTreeView.Items.AddChild(FNodePrincipal, ANomeNode) ;
