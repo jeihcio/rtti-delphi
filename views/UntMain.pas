@@ -5,7 +5,8 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.ExtCtrls, Vcl.StdCtrls,
-  UntMainController, Vcl.ComCtrls, Vcl.Menus;
+  UntMainController, Vcl.ComCtrls, Vcl.Menus, Vcl.CategoryButtons,
+  Vcl.ButtonGroup;
 
 type
   TEvento = (
@@ -14,16 +15,16 @@ type
    obterPropertys);
 
   TFrmMain = class(TForm)
-    GridPanel1: TGridPanel;
-    obterFields: TButton;
-    buscarPorField: TButton;
-    obterPropertys: TButton;
-    Button4: TButton;
     Resultado: TTreeView;
     Menu: TPopupMenu;
     Abrirtudo: TMenuItem;
     Fechartudo: TMenuItem;
     Limpartudo: TMenuItem;
+    Panel1: TPanel;
+    ExibirRecursosHerdados: TCheckBox;
+    obterFields: TButton;
+    buscarPorField: TButton;
+    obterPropertys: TButton;
     procedure FormCreate(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure obterFieldsClick(Sender: TObject);
@@ -48,7 +49,7 @@ uses
 
 procedure TFrmMain.FormCreate(Sender: TObject);
 begin
-   FController := TMainController.Create(Resultado);
+   FController := TMainController.Create(Resultado, ExibirRecursosHerdados.Checked);
 end;
 
 procedure TFrmMain.LimpartudoClick(Sender: TObject);

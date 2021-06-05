@@ -9,10 +9,11 @@ type
   TMainController = class
   private
     FExibirResultado: TExibirResultadoTreeView;
+    FExibirCamposHerdados: Boolean;
     FField: TField;
     FProperty: TProperty;
   public
-    Constructor Create(ATreeView: TTreeView); reintroduce;
+    Constructor Create(ATreeView: TTreeView; AExibirCamposHerdados: Boolean); reintroduce;
     destructor Destroy(); override;
 
     procedure obterFields();
@@ -29,11 +30,14 @@ uses
 
 { TMainController }
 
-constructor TMainController.Create(ATreeView: TTreeView);
+constructor TMainController.Create(ATreeView: TTreeView;
+  AExibirCamposHerdados: Boolean);
 begin
+  FExibirCamposHerdados := AExibirCamposHerdados;
   FExibirResultado := TExibirResultadoTreeView.Create(ATreeView);
-  FField := TField.Create(FExibirResultado);
-  FProperty := TProperty.Create(FExibirResultado);
+
+  FField := TField.Create(FExibirResultado, AExibirCamposHerdados);
+  FProperty := TProperty.Create(FExibirResultado, AExibirCamposHerdados);
 end;
 
 destructor TMainController.Destroy;

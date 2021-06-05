@@ -9,8 +9,10 @@ type
   TProperty = class
   private
     FExibirResultado: TExibirResultadoTreeView;
+    FExibirCamposHerdados: Boolean;
   public
-    constructor Create(AExibirResultado: TExibirResultadoTreeView); reintroduce;
+    constructor Create(AExibirResultado: TExibirResultadoTreeView;
+      AExibirCamposHerdados: Boolean); reintroduce;
 
     procedure obterPropertys();
     procedure buscarPorPropertys(ACampo: String);
@@ -23,7 +25,8 @@ uses
 
 { TProperty }
 
-constructor TProperty.Create(AExibirResultado: TExibirResultadoTreeView);
+constructor TProperty.Create(AExibirResultado: TExibirResultadoTreeView;
+  AExibirCamposHerdados: Boolean);
 begin
   FExibirResultado := AExibirResultado;
 end;
