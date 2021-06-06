@@ -9,3 +9,7 @@ Informações que o programa obtém:
 * Buscar field específica 
 * Buscar property específica 
 * Buscar method específico
+
+# Resultado
+
+![Resultado](https://raw.githubusercontent.com/jeihcio/rtti-delphi/main/resultdo.jpg)
