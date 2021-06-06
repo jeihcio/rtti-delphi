@@ -9,6 +9,7 @@ Informações que o programa obtém:
 * Buscar field específica 
 * Buscar property específica 
 * Buscar method específico
+* Invocar method
 
 # Resultado
 
